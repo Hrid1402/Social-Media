@@ -1,0 +1,17 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "^6.3.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.7.0",
+    "passport-google-oauth2": "^0.2.0"
+  },
+  "scripts": {
+    "dev": "node .\\src\\app.js --watch"
+  },
+  "devDependencies": {
+    "prisma": "^6.3.1"
+  }
+}
