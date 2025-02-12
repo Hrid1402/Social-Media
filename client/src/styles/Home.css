@@ -1,0 +1,123 @@
+:root{
+    --nav-bar-color:aquamarine;
+    --resultsSearchBar: blue;
+    --searchUserBtn: gray;
+    --searchUserBtnHover: rgb(104, 104, 104);
+    --titleColor: white;
+}
+.home{
+    height: 100%;
+}
+.nav-bar__title{
+    color: var(--titleColor);
+    font-size: 24px;
+    margin: 0;
+}
+.nav-bar{
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--nav-bar-color);
+}
+.nav-bar__user__btns{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.nav-bar__user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+    box-sizing: border-box;
+}
+.nav-bar__user img{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+.search-bar{
+    widows: 90%;
+    max-width: 400px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.search-bar input{
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+    font-size: 22px;
+    outline: none;
+    padding: 15px 10px;
+}
+.search-bar__search-btn{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+.search-bar__search-btn:hover svg{
+    transition: transform 0.2s;
+    transform: scale(1.2);
+}
+.search-bar__search-btn:hover{border-color: transparent;}
+.search-bar__search-btn svg{
+    transition: transform 0.3s;
+    height: 25px;
+    width: 25px;
+}
+.hide{
+    transition: opacity 0.15s;
+    opacity: 0;
+    pointer-events: none;
+}
+.search-bar__results__user-list{
+    display: flex;
+    flex-direction: column;
+}
+.search-bar__results{
+    transition: opacity 0.12s;
+    box-sizing: border-box;
+    background-color: var(--resultsSearchBar);
+    position: fixed;
+    width: 100%;
+}
+.search-bar__results__text{
+    padding-left: 10px;
+    text-align: start;
+    font-weight: 500;
+}
+.search-bar__results__user-btn{
+    border-radius: 0;
+    padding: 15px;
+    background-color: var(--searchUserBtn);
+    gap: .75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+.search-bar__results__user-btn:hover{
+    border-radius: 0;
+    padding: 15px;
+    background-color: var(--searchUserBtnHover);
+    gap: .75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+.search-bar__results__user-btn p{
+    text-align: start;
+    font-weight: 400;
+}
+.search-bar__results__user-btn img{
+    height: 50px;
+    border-radius: 50%;
+}

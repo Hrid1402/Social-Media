@@ -1,0 +1,30 @@
+.rodal .rodal-dialog{
+    max-width: 500px;
+    max-height: 500px;
+    width: 80% !important;
+    height: 80% !important;
+    color: black;
+}
+.followersTitle{
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+.followersContainer{
+    display: flex;
+    flex-direction: column;
+}
+.follower{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.follower img{
+    border-radius: 50%;
+}
+.follower p{
+    margin: 0;
+    font-size: 25px;
+}

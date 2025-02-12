@@ -1,12 +1,20 @@
-import { useState } from 'react'
+if (import.meta.env.VITE_ENV === 'production') {
+  console.log = () => {};
+  console.error = () => {};
+}
+import {useState } from 'react'
+import { useAuth } from'./context/authContext.jsx'
+import Home from './pages/Home.jsx'
 import GuestMenu from './pages/GuestMenu.jsx'
-import './App.css'
+import './styles/App.css'
 
 function App() {
+  const { user } = useAuth();
+  const [guestMode, setGuestMode] = useState(false);
 
   return (
     <>
-      <GuestMenu/>
+      { user || guestMode ? <Home/> : <GuestMenu setGuestMode={setGuestMode}/>}
     </>
   )
 }

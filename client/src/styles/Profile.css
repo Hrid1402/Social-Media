@@ -1,0 +1,57 @@
+:root{
+    --profileBg: red;
+}
+.profile-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--profileBg);
+}
+.profile-header__container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 700px;
+    width: 100%;
+    background-color: green;
+}
+.profile-header__picture{
+    border-radius: 50%;
+    height: 150px;
+    width: auto;
+    object-fit: cover
+}
+.profile-header__username{
+    margin: 0;
+    text-align: start;
+    font-weight: 500;
+}
+.profile-header__description{
+    margin-top: 7px;
+    text-align: start;
+}
+.profile-header__user-inf{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    background-color: rgb(0, 80, 80);
+}
+.profile-header__followers-inf{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+}
+.followers-inf_block{
+    display: flex;
+    flex-direction: column;
+}
+.followers-inf_block p{
+   margin: 0
+}
+.followers-inf_block .nro{
+    font-weight: 600;
+}

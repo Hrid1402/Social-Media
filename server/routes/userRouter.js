@@ -9,6 +9,9 @@ userRouter.get("/", verifyToken, async (req, res)=>{
         const user = await prisma.user.findUnique({
             where:{
                 id: req.user.id
+            }, include:{
+                followers: true,
+                following: true
             }
         });
         if (!user) {
@@ -16,7 +19,7 @@ userRouter.get("/", verifyToken, async (req, res)=>{
         }
         res.json(user);
     } catch (error) {
-        console.error("Error fetching user:", error);
+        console.error("Error fetching user:", error.message);
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
