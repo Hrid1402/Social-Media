@@ -45,7 +45,7 @@ searchRouter.get("/userByName", async (req, res)=>{
                 description: true,
                 picture: true,
                 followers: true,
-                following: true
+                following: true,
             }
         });
         if(!user){

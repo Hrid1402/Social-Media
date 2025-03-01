@@ -11,18 +11,59 @@ model User {
   id          String     @id @default(cuid())
   username    String
   email       String
-  description String?
+  description String? @db.VarChar(150)
   picture     String?
-  followers   Follower[] @relation("Following")
+  comments    Comment[]
   following   Follower[] @relation("Followers")
+  followers   Follower[] @relation("Following")
+  likes       Like[]
+  posts       Post[]
 }
 
 model Follower {
   createdAt       DateTime @default(now())
   followingUserId String
   followedUserId  String
-  followedUser    User     @relation("Followers", fields: [followedUserId], references: [id])
-  followingUser   User     @relation("Following", fields: [followingUserId], references: [id])
-
+  followedUser    User     @relation("Followers", fields: [followedUserId], references: [id], onDelete: Cascade)
+  followingUser   User     @relation("Following", fields: [followingUserId], references: [id], onDelete: Cascade)
   @@id([followingUserId, followedUserId])
+}
+
+model Post {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  content   String    @db.VarChar(3000)
+  photos    String[]
+  authorId  String
+  comments  Comment[]
+  likes     Like[]
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  postId    String?
+  userId    String
+  commentId String?
+  comment   Comment?  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  post      Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, userId])
+  @@unique([commentId, userId])
+}
+
+model Comment {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  authorId  String
+  content   String    @db.VarChar(600)
+  parentId  String?
+  postId    String
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  parent    Comment?  @relation("replies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("replies")
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  likes     Like[]
 }

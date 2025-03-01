@@ -24,3 +24,23 @@ userRouter.get("/", verifyToken, async (req, res)=>{
     }
 });
 
+userRouter.put("/", verifyToken, async (req, res)=>{
+    const {description} = req.body;
+    try {
+        const user = await prisma.user.update({
+            where:{
+                id: req.user.id
+            }, data:{
+                description: description
+            }
+        });
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+        res.json(user);
+    } catch (error) {
+        console.error("Error updating user:", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
