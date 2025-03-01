@@ -17,6 +17,7 @@ function Home() {
   let cursor = null;
   const { user, refreshUser } = useAuth();
   const [posts, setPosts] = useState([]);
+  const [userLikes, setUserLikes] = useState([]);
   const [loading, setLoading] = useState(false);
   const loadingRef = useRef(false);
   const mainRef = useRef(null);
@@ -24,7 +25,15 @@ function Home() {
   useEffect(()=>{
     refreshUser();
     setPostsData();
+    if(user){
+      getUserPostsLikes().then(likes=>{
+        setUserLikes(likes)
+        console.log('user likes', likes);
+      });
+    }
   },[]);
+
+  
 
   useEffect(() => {
     const mainContainer = mainRef.current;
@@ -74,7 +83,6 @@ function Home() {
     <div className='home'>
         <NavBar/>
         <main className='home__main' ref={mainRef}>
-          {user ? <h2>Welcome {user.username}</h2> : <h2>Browsing as Guest</h2>}
           <div className='main__posts-container'>
             {
               posts.map(p=>{
@@ -90,6 +98,7 @@ function Home() {
                   content={p.content}
                   photos={p.photos}
                   likes={p._count.likes}
+                  userLikes={userLikes}
                   comments={p._count.comments}
                   />
                 )
@@ -106,7 +115,7 @@ function Home() {
     </div>  
   )
 }
-function PostPreview({id, username, date, userPfp, textOnly, multipleImgs, content, photos, likes, comments}){
+function PostPreview({id, username, date, userPfp, textOnly, multipleImgs, content, photos, likes, userLikes, comments}){
   const [postLikes, setPostLikes] = useState(likes);
   const [postComments, setPostComments] = useState(comments);
 
@@ -124,11 +133,9 @@ function PostPreview({id, username, date, userPfp, textOnly, multipleImgs, conte
   }
 
   useEffect(()=>{
-    if(user){
-      getUserPostsLikes().then(likes=>{
-        setLiked(likes.some(like=>like.postId===id));
-        setLikeLoading(false);
-      });
+    if(user){ 
+      setLiked(userLikes.some(like=>like.postId===id));
+      setLikeLoading(false);
     }else{
       setLikeLoading(false);
       setLiked(false);

@@ -1,10 +1,3 @@
-:root{
-    --nav-bar-color:rgb(56, 56, 56);
-    --resultsSearchBar: blue;
-    --searchUserBtn: gray;
-    --searchUserBtnHover: rgb(104, 104, 104);
-    --titleColor: white;
-}
 .theme-btn{
     padding: 0;
     background-color: transparent;
@@ -47,10 +40,6 @@
     bottom: 0;
 }
 .bottom-bar{
-    /*
-    position: absolute;
-    bottom: 0;
-    */
     transition: background-color 0.2s, color 0.2s;
     box-sizing: border-box;
     width: 100%;
@@ -175,6 +164,13 @@
     max-height: 300px;
     overflow-y: auto;
 }
+.search-bar__results__user-list::-webkit-scrollbar {
+    background: white;
+}
+.search-bar__results__user-list::-webkit-scrollbar-thumb {
+    background: #242424;
+}
+
 .search-bar__results{
     z-index: 120;
     border: 1px solid var(--text-color);
@@ -226,6 +222,16 @@
     align-items: center;
     height: 100vh;
 }
+::-webkit-scrollbar {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--text-color); 
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+
 .home__main{
     overflow-y: auto;
     transition: background-color 0.2s, color 0.2s;
@@ -238,6 +244,7 @@
     width: 100%;
 }
 .main__posts-container{
+    margin-top: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
