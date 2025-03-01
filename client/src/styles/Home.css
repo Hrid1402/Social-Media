@@ -81,6 +81,9 @@
     color: var(--text-color);
     background-color: transparent;
 }
+.nav-bar__user:hover{
+    border-color: transparent;
+}
 .nav-bar__logout{
     color: var(--text-color);
     display: flex;
@@ -107,6 +110,7 @@
     border-radius: 50%;
     height: 42px;
     width: 42px;
+    object-fit: cover;
 }
 .search-bar{
     position: relative;
@@ -211,6 +215,8 @@
 }
 .search-bar__results__user-btn img{
     height: 50px;
+    width: 50px;
+    object-fit: cover;
     border-radius: 50%;
 }
 
@@ -296,6 +302,7 @@
     border-radius: 50%;
     height: 35px;
     width: 35px;
+    object-fit: cover;
 }
 .post__userData p{
     margin: 0;

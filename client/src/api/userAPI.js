@@ -14,10 +14,11 @@ export async function getUser(){
     }
 }
 
-export async function updateUser(description){
+export async function updateUser(description, picture){
     try {
         const user = await axios.put(`${import.meta.env.VITE_SERVER_URL}/user`, 
             {
+                picture: picture,
                 description: description
             },{withCredentials: true});
         console.log('User', user.data);

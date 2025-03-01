@@ -32,8 +32,8 @@
     user-drag: none;
     -webkit-user-drag: none;
     border-radius: 50%;
-    height: auto;
-    width: 240px;
+    aspect-ratio: 1 / 1;
+    width: 30%;
     object-fit: cover
 }
 .profile-header__username{

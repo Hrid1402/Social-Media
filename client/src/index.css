@@ -17,7 +17,7 @@
 [data-theme="dark"] {
   --bg-color: #1c1c1d;
   --text-color: rgb(243, 243, 243);
-  --post-bg: #252728;
+  --post-bg: #252728; 
   --post-shadow: rgba(0, 0, 0, 0.3);
   --navBar-bg: #313131;
 }

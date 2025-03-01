@@ -121,7 +121,9 @@
     user-drag: none;
     -webkit-user-drag: none;
     width: 2.8rem;
+    height: 2.8rem;
     border-radius: 50%;
+    object-fit: cover;
 }
 .text-post-content-right{
     color: var(--text-color);
@@ -281,7 +283,7 @@
         width: 90% !important;
     }
 }
-@media (width<=750px) {
+@media (width<=950px) {
     .postData__left{
         height: 100%;
     }
