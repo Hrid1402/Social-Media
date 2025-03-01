@@ -15,12 +15,6 @@ const port = process.env.PORT;
 
 const app = express()
 
-app.use((req, res, next) => {
-  setTimeout(() => {
-    next();
-  }, 1500); // 2000ms = 2 seconds
-});
-
 app.use(express.json());
 app.use(cors({origin:process.env.CLIENT_URL, credentials: true}));
 app.use(cookieParser());

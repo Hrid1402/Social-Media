@@ -112,6 +112,41 @@ postRouter.get('/feed/guest', async(req,res)=>{
     }
 });
 
+postRouter.get('/feed/followers', verifyToken,async(req,res)=>{
+    console.log("Getting feed as user");
+    const {cursor, followers} = req.query;
+    const PAGE_SIZE = 20;
+    try {
+        const feed = await prisma.post.findMany({
+            where:{
+                authorId: {in: followers}
+            },
+            take: PAGE_SIZE,
+            skip: cursor ? 1 : 0,
+            cursor: cursor ? {id:cursor} : undefined,
+            include: {
+                author: true,
+                _count: { 
+                    select: { 
+                        likes: true,
+                        comments: true
+                    },
+                }
+            },
+            orderBy: [
+                { createdAt: 'desc' }
+              ]
+        });
+        if(!feed){
+            return res.status(404).json({ error: "Couldn't get feed for user" });
+        }
+        return res.json(feed);
+    } catch (error) {
+        console.log("Error getting feed for user", error.message);
+        res.status(500).json({error: 'Internal Server Error'})
+    }
+});
+
 postRouter.delete('/:postId', verifyToken, async(req,res)=>{
     const {postId} = req.params;
     console.log(postId);
