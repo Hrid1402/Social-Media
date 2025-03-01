@@ -1,0 +1,121 @@
+.rodalPost .rodal-dialog{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 700px;
+    max-height: 700px;
+    width: 80% !important;
+    height: 80% !important;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow-y: auto;
+}
+.post-content-textarea{
+    outline: none;
+}
+
+.rodalPost__title{
+    font-size: 28px;
+    font-weight: 600;
+}
+.add-photo-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    transition: transform 0.3s;
+}
+.add-photo-btn:hover{
+    transition: transform 0.2s;
+    transform: scale(1.05);
+    border-color: transparent;
+}
+.publish-post-btn{
+    margin-top: auto;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    width: 100%; 
+}
+.content-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+}
+.content-input p{
+    margin: 0;
+    font-size: 20px;
+}
+.content-input textarea{
+    box-sizing: border-box;
+    padding: 5px;
+    resize: none;
+    width: 100%;
+    font-size: 18px;
+    min-height: 80px;
+    max-height: 300px;
+    field-sizing: content;
+}
+.length-text{
+    align-self: flex-end;
+}
+.photos-preview{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 90%;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.photo-prev{
+    position: relative;
+    height: 230px;
+    border: 1px solid var(--text-color);
+}
+.photo-prev img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.deleteBtn{
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.486);
+    transition: background-color 0.4s;
+    margin: 0;
+    padding: 0;
+}
+.deleteBtn:hover{
+    transition: background-color 0.2s;
+    background-color: rgba(0, 0, 0, 0.945);
+}
+.deleteBtn svg{
+    height: 32px;
+    width: 32px;
+}
+.rodalPrevImage{
+    z-index: 105;
+}
+.rodalPrevImage .rodal-dialog{
+    height: fit-content !important;
+    width: fit-content !important;
+    max-height: 90vh;
+    max-width: 90vw;
+}
+.prevImage-photo{
+    max-height: 90vh;
+    max-width: 90vw;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}

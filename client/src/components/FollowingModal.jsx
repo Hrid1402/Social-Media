@@ -1,13 +1,20 @@
 import React, { useState,useEffect } from 'react'
 import {getFollowings} from '../api/followAPI.js'
+import {followById, unfollowById} from '../api/followAPI.js'
 import Rodal from 'rodal';
+import ClipLoader from 'react-spinners/ClipLoader'
 import 'rodal/lib/rodal.css';
 import '../styles/FollowersModal.css'
+import { useAuth } from'../context/authContext.jsx'
+import BarLoader from 'react-spinners/BarLoader'
 import { useNavigate } from 'react-router-dom';
+import { CiSearch } from "react-icons/ci";
+import { MdClear } from "react-icons/md";
 
-function FollowingModal({showFollowersModal, setShowFollowersModal, profileId}) {
+function FollowingModal({showFollowersModal, setShowFollowersModal, profileId, user}) {
     const [followersData, setFollowersData] = useState(null);
-    const navigate = useNavigate();
+    const [searchingName, setSearchingName] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
         if(showFollowersModal==true){
@@ -15,27 +22,88 @@ function FollowingModal({showFollowersModal, setShowFollowersModal, profileId}) 
           handleGetFollowers();
         }
     }, [showFollowersModal])
+
     async function handleGetFollowers(){
-      const followers = await getFollowings(profileId);
-      console.log('Followings', followers);
-      setFollowersData(followers);
+      try {
+        setLoading(true);
+        const followers = await getFollowings(profileId);
+        console.log('Followings', followers);
+        setFollowersData(followers);
+      } catch (error) {
+        console.log(error);
+      }finally{
+        setLoading(false);
+      }
     }
 
   return (
-    <Rodal className='rodal' enterAnimation='slideDown' leaveAnimation='slideDown' visible={showFollowersModal} onClose={()=>setShowFollowersModal(false)}>
-          <div className='followersTitle'>Following</div>
-          <div className='followersContainer'>
-              { followersData && followersData.map(f=>{
-                const follower = f.followingUser;
-                return (
-                  <button onClick={()=>navigate(`/profile/${follower.username}`)} className='follower' key={follower.id}>
-                    <img src={follower.picture} referrerPolicy="no-referrer"/>
-                    <p>{follower.username}</p>
-                  </button>
-                )
-              })}
-          </div>
+    <Rodal className='rodalFollower' enterAnimation='slideDown' leaveAnimation='slideDown' visible={showFollowersModal} onClose={()=>setShowFollowersModal(false)}>
+        {
+          loading ? <div style={{display: 'grid', placeContent:'center', height:'65vh'}}><ClipLoader size={'70px'} color='var(--text-color)'/></div>
+          :
+          <>
+            <div className='followersTitle'>Following</div>
+            <div className='follower-search-input-container'>
+              <div className='follower-input-search'><CiSearch size={'30px'}/></div>
+              <input type="text" value={searchingName} onChange={e=>setSearchingName(e.target.value)}/>
+              {searchingName && <button onClick={()=>setSearchingName('')} className='follower-input-clear-btn'><MdClear size={'28px'}/></button>}
+            </div>
+            {searchingName && <p className='follower-searched-name'>Searching for: {searchingName}</p>}
+            <div className='followersContainer'>
+            { followersData && followersData.map(f=>{
+              if(!f.followingUser.username.toUpperCase().startsWith(searchingName.toUpperCase())){
+                return
+              }
+              return <Follower key={f.followingUser.id} follower={f.followingUser} user={user}/>
+            })}
+            </div>
+          </>
+        }
       </Rodal>
+  )
+}
+
+function Follower({follower, user}){
+
+  const {refreshUser} = useAuth();
+
+  async function handleFollow(id){
+        try{
+          setLoading(true);
+          await followById(id);
+          await refreshUser();
+          setIsFollowing(true);
+        }catch(error){
+          console.log("Error trying to follow user", error.message);
+        }finally{
+          setLoading(false);
+        }
+  }
+
+    async function handleUnfollow(id){
+        try{
+          setLoading(true);
+          await unfollowById(id);
+          await refreshUser();
+          setIsFollowing(false);
+        }catch(error){
+          console.log("Error trying to unfollow user", error.message);
+        }finally{
+          setLoading(false);
+        }
+      }
+
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const [isFollowing, setIsFollowing] = useState(user.following.some(f => f.followingUserId === follower.id));
+  return(
+    <div role="button" tabIndex="0" onClick={()=>navigate(`/profile/${follower.username}`)} className='follower'>
+      <div className='follower__user-data'>
+        <img src={follower.picture} referrerPolicy="no-referrer"/>
+        <p>{follower.username}</p>
+      </div>
+      {user.id === follower.id ? null : loading ? <button disabled className='follower-box__button' style={{padding:'15px 20px'}}><BarLoader width='40px' color='var(--text-color)'/></button> :  isFollowing ? <button className='follower-box__button' onClick={e=>{e.stopPropagation(), handleUnfollow(follower.id)}}>Unfollow</button> : <button className='follower-box__button' onClick={e=>{e.stopPropagation(), handleFollow(follower.id)}}>Follow</button>}
+    </div>
   )
 }
 

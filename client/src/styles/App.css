@@ -1,5 +1,11 @@
 #root {
-  width: 100%;
+  width: 100vw;
+  min-height: 100vh;
+}
+.main-loader{
   height: 100vh;
-  text-align: center;
+  transition: background-color 0.2s, color 0.2s;
+  background-color: var(--bg-color);
+  display: grid;
+  place-content: center;
 }

@@ -1,0 +1,98 @@
+.account-settings-container{
+    transition: background-color 0.2s, color 0.2s;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.account-user-data{
+    width: 82%;
+    max-width: 320px;
+    transition: background-color 0.2s, color 0.2s;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    color: var(--bg-color);
+    background-color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 360px;
+}
+.account-title{
+    text-align: center;
+    font-size: 2.5rem;
+}
+.account-user-data button{
+    width: 100%;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+.account-user-data img{
+    border-radius: 50%;
+}
+.account-user-data__description{
+    overflow-y: auto;
+}
+.account-user-data p{
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    white-space: pre-wrap;
+    text-align: center;
+}
+.account-edit-title{
+    margin: 0;
+    font-weight: 500;
+    font-size: 20px;
+}
+.account-edit-container{
+    width: 90%;
+    max-width: 600px;
+    transition: background-color 0.2s, color 0.2s;
+    padding: 10px;
+    border-radius: 15px;
+    color: var(--bg-color);
+    background-color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.editing-user-btns{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.account-edit-container button{
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+.account-edit-container textarea{
+    width: 100%;
+    font-size: 18px;
+    outline: 0;
+    height: 180px;
+    field-sizing: content;
+    max-height: 300px;
+    resize: none;
+}
+.account-buttons{
+    max-width: 300px;
+    width: 85%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.account-buttons button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: var(--bg-color);
+    background-color: var(--text-color);
+}

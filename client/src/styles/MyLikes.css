@@ -1,0 +1,61 @@
+.MyLikes{
+    padding: 25px;
+    background-color: var(--bg-color);
+}
+.MyLikes h1{
+    color: var(--text-color);
+    font-size: 28px;
+}
+.MyLikes p{
+    color: var(--text-color);
+    font-size: 18px;
+}
+.loader-container-my-likes{
+    height: 80vh;
+    display: grid;
+    place-content: center;
+}
+.likes__post-container{
+    display: grid;
+    gap: 10px    ;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.likes__post{
+    background-color: green;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    margin: 0;
+    border-radius: 0;
+    padding: 0;
+    border: 1px solid black;
+    height: 60vw;
+    max-height: 400px;
+    background-color: rgb(238, 238, 238);
+    transition: border 0.3s;
+}
+.likes__post:hover{
+    transition: border 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.699);
+}
+.likes__post p{
+    user-select: none;
+    text-align: center;
+    word-break: break-word;
+    padding: 13px;
+    color: rgb(29, 28, 28);
+}
+.likes__post img{
+    user-drag: none;
+    -webkit-user-drag: none;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+@media (width<840px) {
+    .likes__post-container{
+        display: grid;
+        gap: 10px    ;
+        grid-template-columns: repeat(auto-fit, minmax(30vw, 1fr));
+    }
+}

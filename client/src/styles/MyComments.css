@@ -1,0 +1,45 @@
+.MyComments{
+    padding: 25px;
+}
+.comments__post-container{
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.MyComments h1{
+    color: var(--text-color);
+    font-size: 28px;
+}
+.MyComments p{
+    color: var(--text-color);
+    font-size: 18px;
+}
+.my-comments__comment{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--text-color);
+    height: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    align-items: start;
+    padding: 5px    ;
+    gap: 5px;
+}
+.my-comments__comment img{
+   border-radius: 50%;
+   height: 38px;
+   width: 38px  ;
+}
+.my-comments__comment p{
+    color: var(--bg-color);
+    padding: 0;
+    margin: 0;
+    margin-top: 7px;
+    text-align: start;
+    font-weight: 500;
+    font-size: 15px;
+    text-overflow: ellipsis;
+}
+.my-comments__comment p span{
+    color: rgb(129, 172, 252)
+}

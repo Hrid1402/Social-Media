@@ -3,12 +3,23 @@
   line-height: 1.5;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  --bg-color: #f2f4f7;
+  --text-color: #242424;
+  --post-bg: #ffffff;
+  --post-shadow: rgba(0, 0, 0, 0.3);
+  --navBar-bg: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1c1c1d;
+  --text-color: rgb(243, 243, 243);
+  --post-bg: #252728;
+  --post-shadow: rgba(0, 0, 0, 0.3);
+  --navBar-bg: #313131;
 }
 
 a {
@@ -22,6 +33,7 @@ a:hover {
 
 body {
   margin: 0;
+  background-color: var(--bg-color);
   display: flex;
   place-items: center;
   min-height: 100vh;

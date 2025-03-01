@@ -1,0 +1,50 @@
+.guest-content{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+    transition: background-color 0.2s, color 0.2s;
+}
+.guest-theme-btn{
+    position: fixed;
+    top: 0;
+    margin: 25px;
+    right: 0;
+}
+.guest-logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    font-size: 25px;
+}
+.guest-logo svg{
+    width: 100px;
+    height: 100px;
+    color: var(--text-color);
+}
+.guest-buttons{
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+}
+.guest-buttons__google, .guest-buttons__guest{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 18px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+.guest-buttons__google svg, .guest-buttons__guest svg{
+    width: 32px;
+    height: 32px;
+}
+
+.guest-logo h1{
+    color: var(--text-color);
+}

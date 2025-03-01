@@ -1,0 +1,6 @@
+.fixed-rodal{
+    top: 50%;
+    position: absolute;
+    height: auto;
+    background-color: red;
+}
