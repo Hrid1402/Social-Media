@@ -4,7 +4,7 @@ import { getUserPostsLikes, likePost, unlikePost } from '../api/likesAPI';
 import NavBar from '../components/NavBar.jsx'
 import BottomNav from '../components/BottomNav.jsx'
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { getGuestFeed } from '../api/postAPI.js'
+import { getGuestFeed, getFollowersFeed, getFeedQuote } from '../api/postAPI.js'
 import { FaChevronLeft, FaChevronRight, FaRegComment } from "react-icons/fa";
 import { PiShareFat } from "react-icons/pi";
 import PostModal from './PostModal.jsx';
@@ -15,10 +15,12 @@ import { useNavigate } from 'react-router-dom';
 
 function Home() {
   let cursor = null;
+  let curQuote = useRef(getFeedQuote());
   const { user, refreshUser } = useAuth();
   const [posts, setPosts] = useState([]);
   const [userLikes, setUserLikes] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [feedType, setFeedType] = useState('feed');
   const loadingRef = useRef(false);
   const mainRef = useRef(null);
 
@@ -41,7 +43,7 @@ function Home() {
       const handleScroll = () => {
       if (!loadingRef.current && mainContainer.scrollTop + mainContainer.clientHeight >= mainContainer.scrollHeight - 10) {
         console.log("Reached bottom!");
-        loadPosts();
+        loadPosts(feedType);
       }
     };
     mainContainer.addEventListener("scroll", handleScroll);
@@ -56,16 +58,42 @@ function Home() {
     return array;
   }
 
-  async function loadPosts(){
+  async function changeFeed(feedType){
+    setFeedType(feedType);
+    setPosts([]);
+    cursor = null;
+    loadPosts(feedType);
+  }
+
+  async function loadPosts(feedType='feed'){
     console.log('loading posts....')
     console.log('cursor', cursor);
     try {
       setLoading(true);
       loadingRef.current = true;
-      const response = await getGuestFeed(cursor);
+      let response = [];
+      if(feedType === 'feed'){
+        response = await getGuestFeed(cursor);
+      }else{
+        const followingsId = user.following.map(f=>{
+          return f.followingUserId
+        });
+        console.log('ids',followingsId);
+        if(followingsId.length===0){
+          response = [];
+        }else{
+          response = await getFollowersFeed(cursor, followingsId);
+          console.log('following FEED', response);
+        }
+        
+      }
       console.log(response);
       cursor = response.length > 0 ? response[response.length - 1].id : cursor;
-      setPosts(prev=>[...prev, ...shuffleArray([...response])]);
+      if(feedType === 'feed'){
+        setPosts(prev=>[...prev, ...shuffleArray([...response])]);
+      }else{
+        setPosts(prev=>[...prev, ...response]);
+      }
     } catch (error) {
       console.log(error.message);
     }finally{
@@ -83,6 +111,14 @@ function Home() {
     <div className='home'>
         <NavBar/>
         <main className='home__main' ref={mainRef}>
+        {
+            user && 
+            <div className='feeds-btns'>
+              <button disabled={feedType === 'feed'} className='feed-btn' onClick={()=>changeFeed('feed')} >Feed</button>
+              <button disabled={feedType === 'followers'} className='feed-btn' onClick={()=>changeFeed('followers')}>Following</button>
+            </div>
+        }
+          {feedType === 'followers' ? <p className='home__quote'>{user && user.following.length===0 ? 'Your Following list is empty. Follow people to see their posts here!' : 'Here are the latest updates from people you follow!'}</p> : <p className='home__quote'>{curQuote.current}</p>} 
           <div className='main__posts-container'>
             {
               posts.map(p=>{

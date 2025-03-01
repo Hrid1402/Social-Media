@@ -48,7 +48,20 @@ export async function getGuestFeed(cursor){
         });
         return response.data
     } catch (error) {
-        console.log("Error trying get post from id", error.message);
+        console.log("Error trying get post guest feed", error.message);
+    }
+}
+
+export async function getFollowersFeed(cursor, followers){
+    try {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/post/feed/followers`,{
+            params: { 
+                followers: followers,
+                cursor: cursor 
+            },withCredentials: true});
+        return response.data
+    } catch (error) {
+        console.log("Error trying get followers feed", error.message);
     }
 }
 
@@ -73,4 +86,31 @@ export async function updatePost(postId, content, photos){
     } catch (error) {
         console.log("Error trying to update post", error.message);
     }
+}
+
+export function getFeedQuote() {
+    const messages = [
+        "Check out what everyone’s talking about!",
+        "See what’s trending in your feed!",
+        "Fresh posts just for you, dive in!",
+        "Don’t miss out on the latest updates!",
+        "Your feed is buzzing, see what’s new!",
+        "New posts are in, scroll and enjoy!",
+        "Everyone’s sharing, catch up now!",
+        "Hot takes and fresh updates await!",
+        "Discover the latest conversations!",
+        "Stay in the loop, see what’s happening!",
+        "The latest posts are just a scroll away!",
+        "Explore what’s new in your feed today!",
+        "See what’s making waves right now!",
+        "Your daily dose of fresh content is here!",
+        "Jump into the latest updates from everyone!",
+        "The feed is alive, see what’s trending!",
+        "What’s new? Find out in your feed!",
+        "Fresh posts, hot topics, check them out!",
+        "The latest updates are waiting for you!",
+        "Scroll through the freshest posts now!"
+    ];
+    
+    return messages[Math.floor(Math.random() * messages.length)];
 }
