@@ -25,12 +25,13 @@ userRouter.get("/", verifyToken, async (req, res)=>{
 });
 
 userRouter.put("/", verifyToken, async (req, res)=>{
-    const {description} = req.body;
+    const {description, picture} = req.body;
     try {
         const user = await prisma.user.update({
             where:{
                 id: req.user.id
             }, data:{
+                picture: picture,
                 description: description
             }
         });

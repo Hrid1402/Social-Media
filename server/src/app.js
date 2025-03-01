@@ -18,7 +18,7 @@ const app = express()
 app.use((req, res, next) => {
   setTimeout(() => {
     next();
-  }, 1000); // 2000ms = 2 seconds
+  }, 1500); // 2000ms = 2 seconds
 });
 
 app.use(express.json());
