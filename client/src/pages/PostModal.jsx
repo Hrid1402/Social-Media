@@ -271,7 +271,7 @@ function PostModal({postId, postModalOpen, setPostModalOpen, showCloseButton=tru
                           :
                           <>
                             <input onChange={e=>setCommentContent(e.target.value)} type="text" placeholder='Add a comment...' value={commentContent} maxLength={600}/>
-                            <button onClick={()=>handleAddComment()}><IoSend /></button>
+                            <button disabled={!commentContent} onClick={()=>handleAddComment()}><IoSend /></button>
                           </>
                         }
                       </div>

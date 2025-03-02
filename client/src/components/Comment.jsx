@@ -138,6 +138,7 @@ function Comment({id, content, author, likes, date, replies=[], parent, postId})
             console.log('newComment', newComment);
             setAllReplies(prev=>[newComment, ...prev]);
             setHasReplies(true);
+            setRepliesTotal(prev=>prev+1);
             setReplyContent("");
             setReplying(false);
         } catch (error) {
@@ -207,7 +208,7 @@ function Comment({id, content, author, likes, date, replies=[], parent, postId})
                                 </div>
                                 <div className='reply-input__btns'>
                                     <button onClick={()=>{setReplying(false), setReplyContent("")}}>Cancel</button>
-                                    <button onClick={()=>handleAddComment(id)}>Send</button>
+                                    <button onClick={()=>handleAddComment(id)} disabled={!replyContent}>Send</button>
                                 </div>
                                 </>
                             }
@@ -218,7 +219,7 @@ function Comment({id, content, author, likes, date, replies=[], parent, postId})
                         editMode ? !loadingEdit ?
                         <div className='edit-mode-buttons'>
                             <button onClick={()=>{setEditContent(mainContent),setEditMode(false)}}>Cancel</button>
-                            <button onClick={()=>handleEditComment(id)}>Save</button>
+                            <button onClick={()=>handleEditComment(id)} disabled={!editContent}>Save</button>
                         </div> : null
                         
                         : deleteLoading ? <ClipLoader size={'15px'} color='var(--text-color)'/> : !replying && user && user.id === author.id &&

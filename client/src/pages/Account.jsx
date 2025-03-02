@@ -37,7 +37,7 @@ function Account() {
 
     function setCurUserData(){
         if(!user) return;
-        setDescription(user.description);
+        setDescription(user.description ?? '');
     }
 
     async function saveChanges(){

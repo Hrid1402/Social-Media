@@ -109,7 +109,7 @@ function Home() {
 
   return (
     <div className='home'>
-        <NavBar/>
+        <NavBar shadow={user}/>
         <main className='home__main' ref={mainRef}>
         {
             user && 
