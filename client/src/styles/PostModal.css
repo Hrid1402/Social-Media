@@ -1,6 +1,6 @@
 .postRodal .rodal-dialog{
     width: 80vw !important;
-    height: 80vh !important;
+    height: 80svh !important;
     padding: 0;
 }
 
@@ -11,7 +11,7 @@
     height: 100%;
 }
 .postData__left{
-    height: 80vh;
+    height: 80svh;
     position: relative;
     background-color: rgb(22, 22, 22);
     display: flex;
@@ -154,7 +154,7 @@
     flex-direction: column;
     align-items: center;
     gap: 18px;
-    height: 80vh;
+    height: 80svh;
     flex: 1;
     padding-top: 15px;
     padding-bottom: 15px;

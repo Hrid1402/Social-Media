@@ -228,7 +228,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100svh;
 }
 ::-webkit-scrollbar {
     background: var(--bg-color);
