@@ -183,6 +183,7 @@
     color: var(--bg-color);
     display: none;
     width: 90%;
+    margin-bottom: .9375rem;
 }
 .follow-btn{
     background-color: var(--text-color);
