@@ -34,7 +34,7 @@ authRouter.get('/logout',  (req, res) =>{
     res.clearCookie("token", {
         httpOnly: true,
         secure: true,
-        sameSite: "Lax",
+        sameSite: "None",
       })
     res.json({message: 'token deleted'});
 }  
