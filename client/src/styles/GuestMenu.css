@@ -48,3 +48,16 @@
 .guest-logo h1{
     color: var(--text-color);
 }
+
+@media (width<400px) {
+    .guest-logo h1{
+        color: var(--text-color);
+        font-size: 16vw;
+        padding-right: 5px;
+    }
+    
+.guest-logo svg{
+    height: 70px;
+    width: 70px;
+}
+}
