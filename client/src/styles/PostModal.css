@@ -305,6 +305,6 @@
         display: flex;
     }
     .postData__left__content{
-        max-height: 60vh;
+        max-height: 50svh;
     }
 }
