@@ -22,7 +22,7 @@ authRouter.get('/google/callback',
         res.cookie("token", req.user.token, {
             httpOnly: true,
             secure: true,
-            sameSite: "Lax",
+            sameSite: "None",
             maxAge: 86400000,
           });
         console.log({token: req.user.token});
