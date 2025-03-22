@@ -4,7 +4,7 @@
 .comments__post-container{
     display: grid;
     gap: 15px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 .MyComments h1{
     color: var(--text-color);
