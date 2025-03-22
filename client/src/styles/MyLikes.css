@@ -18,7 +18,7 @@
 .likes__post-container{
     display: grid;
     gap: 10px    ;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 .likes__post{
     background-color: green;
